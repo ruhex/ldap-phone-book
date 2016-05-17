@@ -1,0 +1,50 @@
+@charset "utf-8";
+/* CSS Document */
+
+ul, li {
+    list-style: none; /* убираем маркеры списков */
+    margin: 0; /* обнуляем внешние поля */
+    padding: 0; /* обнуляем внутренние отступы */
+   }
+   #menu {
+       margin: 10px;
+    height: 35px; /* высота основного меню */
+    background: #2eb82e; /* фон */
+    font: bold 16px/25px Arial, sans-serif; /* стили шрифта */
+   }
+   #menu li {
+    float: left; /* элементы списков всплывают влево */
+    background: #2eb82e; /* фон пунктов */
+    position: relative; /* относительное позиционирование */
+   }
+   #menu ul li {
+    float: none; /* отменяем всплытие для внутренних элементов списков */
+   }
+   #menu a {
+    display: block; /* делаем ссылки блоками */
+    color: #fff; /* цвет текста ссылок */
+    text-decoration: none; /* убираем подчеркивание */
+    white-space: nowrap; /* запрещаем перевод строк */
+    padding: 5px 10px; /* внутренние отступы */
+   }
+   #menu ul a {
+    min-width: 150px; /* минимальная ширина подпунктов */
+    width: auto !important; /* для поддержки IE6 */
+    width: 150px; /* для IE6 */
+   }
+   #menu ul {
+    position: absolute; /* абсолютное позиционирование внутренних списков */
+    display: none; /* скрываем внутренние списки */
+   }
+   #menu li:hover ul, #menu li.ie6 ul {
+    display: block; /* делаем внутренние списки блочными при наведении мыши на внешние элементы LI */
+   }
+   #menu li:hover ul a, #menu li.ie6 ul a {
+    color: #fff; /* цвет текста внутренних ссылок */
+    background: #2eb82e; /* цвет фона */
+   }
+   #menu li:hover a, #menu li ul a:hover, #menu li.ie6 a {
+    color: #c00; /* цвет текста внешних ссылок при наведении курсора на LI,
+                    а также внутренних ссылок при наведении курсора на них самих */
+    background: #2eb82e; /* фон */
+   }
