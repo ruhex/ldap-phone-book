@@ -23,7 +23,7 @@
             </ul>
           
           </li>
-          <li><a href="#">Экспорт в PDF</a></li>
+          <li><a href="#" id="pdf_send">Экспорт в PDF</a></li>
           
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -110,6 +110,18 @@
             });
         }
         
+        function PDF(content) {
+            $.ajax({
+               type:'POST',
+               url:'include/test.php?pdf=' + conent,
+               message: 'http://yourwebsite.com/getdownload/ska08912dsa'
+               
+            });
+        }
+        
+        
+        
+        
         
         $(document).ready(function(){            
            
@@ -128,6 +140,12 @@
              });
          
             
+            
+            $(document).on('click', '#pdf_send', function(){
+                    PDF($('#users').html());
+                    
+                
+            });
             
             
         });

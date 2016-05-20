@@ -35,7 +35,7 @@
                     
                     
                     for ($i=0; $i<$info["count"]; $i++) {
-                        if ($info[$i]["telephonenumber"][0] != null)
+                        if ($info[$i]["telephonenumber"][0] != null or $info[$i]["mobile"][0] != null)
                         {
                             $massiv[$i] = new User(
                                     $info[$i]["samaccountname"][0], 
