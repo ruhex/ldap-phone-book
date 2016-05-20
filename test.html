@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+</head>
+<body>
+    <div class="11">
+        <ul>
+            <li><a href='#'>1</a></li>
+            <li><a href='#'>3</a></li>
+            <li><a href='#'>2222</a></li>
+        </ul>
+    </div>
+    <script>
+        function SendGet() {
+            $.ajax({
+               type:'GET',
+               url:'include/cat.php',
+               response:'text',
+               success:function (html){
+                   $('#cat').html(html);
+               }
+            });
+            
+        }
+        
+        
+        
+        
+        $(document).ready(function(){
+            
+            $('.11 ul li a').click(function(){
+               alert($(this).text()); 
+            });
+            
+            
+        });
+        
+        
+    </script>
+	
+
+
+</body>

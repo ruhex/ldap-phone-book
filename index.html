@@ -1,47 +1,142 @@
-<!DOCTYPE HTML>
+﻿<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Capital</title>
-<link href="style.css" rel="stylesheet" type="text/css">
-<link href="menu.css" rel="stylesheet" type="text/css">
- </head>
- <body>
- 	 <div id="header"><h1>Phone book</h1></div>
-     <div class="main_top"> 
-    <div class="main_center">
-    </div>
-    </div>
-    <div class="main_top_">
-    <div class="main_top_menu">
-    <ul>
-	<li><a id="index" href="#">Отделы</a></li>
-	<li><a href="#">Показать всех</a></li>
-    </ul>
-    </div>
-    </div>
-    <div id="content">
-      <table width=100% border="1" align="center">
-        <tr> 
-          <td width="94" height="30" bgcolor="#ffcc33">ФИО</td>
-          <td width="94" height="30" bgcolor="#ffcc33">Отдел</td>
-          <td width="94" height="30" bgcolor="#ffcc33">Должность</td>
-          <td width="94" height="30" bgcolor="#ffcc33">Внутренний номер</td>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="dist/css/bootstrap-submenu.min.css">
+
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" defer></script>
+  <script src="dist/js/bootstrap-submenu.min.js" defer></script>
+</head>
+<body>
+    
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container">
+      
+      <ul class="nav navbar-nav navbar-left">
+          <li class="navbar-brand" style="color: red; font-size: 24px; padding-left: 0">Phone book <span class="label label-primary">2.0</span></li>
+          <li><a href="#">Все отделы</a></li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Выбрать отдел</a>
+            <ul class="dropdown-menu" id="cat">
+                <li><a href="#">Action</a></li>
+            </ul>
+          
+          </li>
+          <li><a href="#">Экспорт в PDF</a></li>
+          
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          <form class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="поиск по фамилии..." id="get_name">
+            </div>
+            <button type="submit" class="btn btn-default" id="sub_name">Поиск</button>
+          </form>
+      </ul>
+  </div>
+</nav>
+    
+    <br />
+    
+    <div class="container" style="padding: 0">
+    <div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+
+  <!-- Table -->
+  <table class="table table-striped">
+    <thead>
+        <tr>
+        <th>ФИО</th>
+        <th>Отдел</th>
+        <th>E-mail</th>
+        <th>Внутренний номер</th>
+        <th>Мобильный</th>
         </tr>
+        </thead>
+        <tbody id="users">       
         
-        <tr> 
-          <td width="94" height="30" bgcolor="#585858">ФИО</td>
-          <td width="94" height="30" bgcolor="#585858">Отдел</td>
-          <td width="94" height="30" bgcolor="#585858">Должность</td>
-          <td width="94" height="30" bgcolor="#585858">Внутренний номер</td>
-        </tr>
+        
 
-
-      </table>
-  </div>
-  
-  
-  
-  <div id="footer">
-   &copy; Мовчан Михаил
-  </div>
+ </tbody>
+  </table>
+</div>
+    </div>
+    
+    
+    <script>
+        function CatGet() {
+            $.ajax({
+               type:'GET',
+               url:'core/cat.php',
+               response:'text',
+               success:function (html){
+                   $('#cat').html(html);
+               }
+            });
+        }
+        
+        function UserGetAll() {
+            $.ajax({
+               type:'GET',
+               url:'core/content.php',
+               response:'text',
+               success:function (html){
+                   $('#users').html(html);
+               }
+            });
+        }
+        
+        function UserGet(ou) {
+            $.ajax({
+               type:'GET',
+               url:'core/content.php?ou=' + ou,
+               response:'text',
+               success:function (html){
+                   $('#users').html(html);
+               }
+            });
+        }
+        
+        function UserGetName(user) {
+            $.ajax({
+               type:'GET',
+               url:'core/content.php?user=' + user,
+               response:'text',
+               success:function (html){
+                   $('#users').html(html);
+               }
+            });
+        }
+        
+        
+        $(document).ready(function(){            
+           
+            CatGet();
+            UserGetAll();
+            
+            $('#cat').on('click', 'li a', function(){
+                //alert($(this).text());
+                    UserGet($(this).text());
+                    
+                
+            });
+            
+             $('#sub_name').click(function(){
+                UserGetName($('#get_name').val()); 
+             });
+         
+            
+            
+            
+        });
+        
+        
+    </script>
+    
+    
+    
+    
+</body>
+</html>

@@ -1,6 +1,6 @@
 <?php
-  include 'config.php';
-  include 'ldap.php';
+  include 'include/config.php';
+  include 'include/ldap.php';
   error_reporting( E_ERROR );
 ?>
 
