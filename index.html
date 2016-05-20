@@ -8,6 +8,8 @@
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" defer></script>
   <script src="dist/js/bootstrap-submenu.min.js" defer></script>
+  
+  <script src="jsPDF/dist/jspdf.min.js"></script>
 </head>
 <body>
     
@@ -111,11 +113,19 @@
         }
         
         function PDF(content) {
-            $.ajax({
-               type:'POST',
-               url:'include/test.php?pdf=' + conent,
-               message: 'http://yourwebsite.com/getdownload/ska08912dsa'
-               
+           var doc = new jsPDF();
+            var specialElementHandlers = {
+                '#users': function (element, renderer) {
+                    return true;
+                }
+            };
+
+            $('#pdf_send').click(function () {
+                doc.fromHTML($('#users').html(), 15, 15, {
+                    'width': 170,
+                        'elementHandlers': specialElementHandlers
+                });
+                doc.save('sample-file.pdf');
             });
         }
         

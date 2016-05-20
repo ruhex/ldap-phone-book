@@ -2,37 +2,42 @@
 <html>
 <head>
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+  <script src="jsPDF/dist/jspdf.min.js"></script>
 </head>
-<body>
-    <div class="11">
-        <ul>
-            <li><a href='#'>1</a></li>
-            <li><a href='#'>3</a></li>
-            <li><a href='#'>2222</a></li>
-        </ul>
-    </div>
+<div id="content">
+     <h3>Hello, this is a H3 tag</h3>
+    <h3>привет пидр</h3>
+    <p>a pararaph</p>
+</div>
+<div id="editor"></div>
+<button id="cmd">generate PDF</button>
     <script>
-        function SendGet() {
-            $.ajax({
-               type:'GET',
-               url:'include/cat.php',
-               response:'text',
-               success:function (html){
-                   $('#cat').html(html);
-               }
-            });
-            
-        }
+       
         
         
         
         
         $(document).ready(function(){
-            
-            $('.11 ul li a').click(function(){
-               alert($(this).text()); 
-            });
-            
+          
+          
+          var doc = new jsPDF();
+var specialElementHandlers = {
+    '#editor': function (element, renderer) {
+        return true;
+    }
+};
+
+$('#cmd').click(function () {
+    doc.fromHTML($('#content').html(), 15, 15, {
+        'width': 170,
+            'elementHandlers': specialElementHandlers
+    });
+    doc.save('sample-file.pdf');
+});
+          
+          
+          
+          
             
         });
         
