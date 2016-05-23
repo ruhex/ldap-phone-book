@@ -9,7 +9,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" defer></script>
   <script src="dist/js/bootstrap-submenu.min.js" defer></script>
   
-  <script src="jsPDF/dist/jspdf.min.js"></script>
+  <script src="pdfmake/build/pdfmake.min.js"></script>
+  <script src="pdfmake/build/vfs_fonts.js"></script>
 </head>
 <body>
     
@@ -18,7 +19,7 @@
       
       <ul class="nav navbar-nav navbar-left">
           <li class="navbar-brand" style="color: red; font-size: 24px; padding-left: 0">Phone book <span class="label label-primary">2.0</span></li>
-          <li><a href="#">Все отделы</a></li>
+          <li><a href="#" id="show_all_cat">Все отделы</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Выбрать отдел</a>
             <ul class="dropdown-menu" id="cat">
                 <li><a href="#">Action</a></li>
@@ -64,6 +65,11 @@
  </tbody>
   </table>
 </div>
+        
+        <canvas id="canvas" width="500" height="500">
+    <p>Ваш браузер не поддерживает рисование.</p>
+  </canvas>
+        
     </div>
     
     
@@ -121,12 +127,19 @@
             };
 
             $('#pdf_send').click(function () {
+                
+                
                 doc.fromHTML($('#users').html(), 15, 15, {
                     'width': 170,
                         'elementHandlers': specialElementHandlers
                 });
                 doc.save('sample-file.pdf');
             });
+        }
+        
+        function testPDF(content) {
+            var docDefinition = { content: content };
+          pdfMake.createPdf(docDefinition).download();
         }
         
         
@@ -152,10 +165,16 @@
             
             
             $(document).on('click', '#pdf_send', function(){
-                    PDF($('#users').html());
+                    //PDF($('#users').html());
+                    testPDF($('#users').text());
                     
                 
             });
+
+            $('#show_all_cat').click(function(){
+                    UserGetAll();
+            });
+
             
             
         });

@@ -7,11 +7,11 @@
   
   foreach (Ldap::LdapConnect($_GET['user'], $_GET['ou']) as $tmp)
             {   echo "<tr>";
-                echo "<td>". $tmp->getDisplayName() ."</td>";
-                echo "<td>". $tmp->getDn() ."</td>";
-                echo "<td>". $tmp->getMail() ."</td>";
-                echo "<td>". $tmp->getPhone() ."</td>";
-                echo "<td>". $tmp->getMobile() ."</td>";
+                echo "<td><span class='glyphicon glyphicon-user' aria-hidden='true'></span> ". $tmp->getDisplayName() ."</td>";
+                echo "<td><span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span> ". $tmp->getDn() ."</td>";
+                echo "<td><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> ". $tmp->getMail() ."</td>";
+                echo "<td><span class='glyphicon glyphicon-earphone' aria-hidden='true'></span> ". $tmp->getPhone() ."</td>";
+                echo "<td><span class='glyphicon glyphicon-phone' aria-hidden='true'></span> ". $tmp->getMobile() ."</td>";
                 echo "</tr>";
             }
             

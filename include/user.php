@@ -85,6 +85,11 @@
                 {
                     return $this->Mobile;
                 }
+                
+                public function getJSONEncode()
+                {
+                    return json_encode(get_object_vars($this), JSON_UNESCAPED_UNICODE);
+                }
 
 
 

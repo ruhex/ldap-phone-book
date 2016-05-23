@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        <h1></h1>
+            
+        
+        
+        
+        <script>
+            
+            $(document).ready(function(){
+                var t;
+                $.ajax({
+                   url: 'http://localhost/ldap/test.php',
+                   success: function(data){
+                       
+                       schedule = JSON.parse(data, function(key, value) {
+  alert(key + value);
+});
+                   }
+                });
+                
+                //t = '{"response":[{"id":66748,"first_name":"Олег","last_name":"Илларионов","hidden":1},{"id":103078149,"first_name":"Mikhail","last_name":"Movchan","hidden":1}]}';
+                
+                
+                
+                
+                
+                
+                });
+                
+                
+        
+        
+        
+            
+            
+            
+            
+            
+        </script>
+        
+        
+    </body>
+</html>
