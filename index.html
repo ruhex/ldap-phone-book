@@ -11,6 +11,7 @@
   
   <script src="pdfmake/build/pdfmake.min.js"></script>
   <script src="pdfmake/build/vfs_fonts.js"></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
     
@@ -65,125 +66,6 @@
  </tbody>
   </table>
 </div>
-        
-        <canvas id="canvas" width="500" height="500">
-    <p>Ваш браузер не поддерживает рисование.</p>
-  </canvas>
-        
     </div>
-    
-    
-    <script>
-        function CatGet() {
-            $.ajax({
-               type:'GET',
-               url:'core/cat.php',
-               response:'text',
-               success:function (html){
-                   $('#cat').html(html);
-               }
-            });
-        }
-        
-        function UserGetAll() {
-            $.ajax({
-               type:'GET',
-               url:'core/content.php',
-               response:'text',
-               success:function (html){
-                   $('#users').html(html);
-               }
-            });
-        }
-        
-        function UserGet(ou) {
-            $.ajax({
-               type:'GET',
-               url:'core/content.php?ou=' + ou,
-               response:'text',
-               success:function (html){
-                   $('#users').html(html);
-               }
-            });
-        }
-        
-        function UserGetName(user) {
-            $.ajax({
-               type:'GET',
-               url:'core/content.php?user=' + user,
-               response:'text',
-               success:function (html){
-                   $('#users').html(html);
-               }
-            });
-        }
-        
-        function PDF(content) {
-           var doc = new jsPDF();
-            var specialElementHandlers = {
-                '#users': function (element, renderer) {
-                    return true;
-                }
-            };
-
-            $('#pdf_send').click(function () {
-                
-                
-                doc.fromHTML($('#users').html(), 15, 15, {
-                    'width': 170,
-                        'elementHandlers': specialElementHandlers
-                });
-                doc.save('sample-file.pdf');
-            });
-        }
-        
-        function testPDF(content) {
-            var docDefinition = { content: content };
-          pdfMake.createPdf(docDefinition).download();
-        }
-        
-        
-        
-        
-        
-        $(document).ready(function(){            
-           
-            CatGet();
-            UserGetAll();
-            
-            $('#cat').on('click', 'li a', function(){
-                //alert($(this).text());
-                    UserGet($(this).text());
-                    
-                
-            });
-            
-             $('#sub_name').click(function(){
-                UserGetName($('#get_name').val()); 
-             });
-         
-            
-            
-            $(document).on('click', '#pdf_send', function(){
-                    //PDF($('#users').html());
-                    testPDF($('#users').text());
-                    
-                
-            });
-
-            $('#show_all_cat').click(function(){
-                    UserGetAll();
-            });
-
-            
-            
-        });
-        
-        
-    </script>
-    
-    
-    
-    
 </body>
 </html>

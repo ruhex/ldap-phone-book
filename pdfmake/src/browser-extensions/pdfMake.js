@@ -5,7 +5,7 @@
 
 // Ensure the browser provides the level of support needed
 if ( ! Object.keys ) {
-	return;
+	//return;
 }
 
 var PdfPrinter = require('../printer');

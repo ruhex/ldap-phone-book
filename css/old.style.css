@@ -1,0 +1,63 @@
+@charset "utf-8";
+/* CSS Document */
+
+body 
+{
+	margin: 0;
+}
+
+tr
+{
+    border: 1px solid #000000;
+}
+
+table
+{
+    margin: 0 auto;
+}
+
+.ser
+{
+    margin: 5px;
+}
+
+table tr td
+{
+    padding: 5px;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+h1
+{
+	font-size: 30px;
+	margin: 0;
+}
+
+#header
+{
+	padding: 15px;
+}
+
+#content
+{
+	border: dashed #09F 1px;
+	margin: 10px; /* Выравнивание по центру */
+	padding: 10px;
+	
+
+
+
+	
+}
+#footer 
+{
+    opacity: 0.5;
+    font-size: 13px;
+    position: fixed; /* Фиксированное положение */
+    left: 0; bottom: 0; /* Левый нижний угол */
+    padding: 10px; /* Поля вокруг текста */
+    border-top: 1px dashed #09F;
+    color: #000000; /* Цвет текста */
+    width: 100%; /* Ширина слоя */
+}
