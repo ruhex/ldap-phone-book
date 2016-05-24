@@ -47,27 +47,10 @@ function CatGet() {
             });
         }
         
-        function PDF(content) {
-           var doc = new jsPDF();
-            var specialElementHandlers = {
-                '#users': function (element, renderer) {
-                    return true;
-                }
-            };
-
-            $('#pdf_send').click(function () {
-                
-                
-                doc.fromHTML($('#users').html(), 15, 15, {
-                    'width': 170,
-                        'elementHandlers': specialElementHandlers
-                });
-                doc.save('sample-file.pdf');
-            });
-        }
+        
         
         function testPDF(content) {
-            var docDefinition = { content: content };
+            var docDefinition = { content: content};
           pdfMake.createPdf(docDefinition).download();
         }
         
@@ -94,7 +77,7 @@ function CatGet() {
             
             
             $(document).on('click', '#pdf_send', function(){
-                    //PDF($('#users').html());
+                    
                     testPDF($('#users').text());
                     
                 
