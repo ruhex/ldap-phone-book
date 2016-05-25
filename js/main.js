@@ -36,16 +36,7 @@ function CatGet() {
             });
         }
         
-        function UserGetName(user) {
-            $.ajax({
-               type:'GET',
-               url:'core/content.php?user=' + user,
-               response:'text',
-               success:function (html){
-                   $('#users').html(html);
-               }
-            });
-        }
+        
         
         
         
@@ -61,7 +52,7 @@ function CatGet() {
         $(document).ready(function(){            
            
             CatGet();
-            UserGetAll();
+            //UserGetAll();
             
             $('#cat').on('click', 'li a', function(){
                 //alert($(this).text());

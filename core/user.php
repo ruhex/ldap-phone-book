@@ -9,7 +9,6 @@
 		private $Mail;
                 private $Dn;
                 private $Mobile;
-                //private $Sn; // Фамилия ad sn
 
 
                 
@@ -89,6 +88,11 @@
                 public function getJSONEncode()
                 {
                     return json_encode(get_object_vars($this), JSON_UNESCAPED_UNICODE);
+                }
+                
+                public function getTest()
+                {
+                    return get_object_vars($this);
                 }
 
 

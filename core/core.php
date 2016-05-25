@@ -1,7 +1,7 @@
 <?php
   
-  include '../include/config.php';
-  include '../include/ldap.php';
+  include_once '../include/config.php';
+  include_once 'ldap.php';
 
 
 

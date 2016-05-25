@@ -23,7 +23,7 @@
                 if ($connect)
                 {
                                        
-                    $bind = ldap_bind($connect, LDAP_USER, LDAP_PASSWD);
+                    $ldap_bind = ldap_bind($connect, LDAP_USER, LDAP_PASSWD);
                     $filter = "(|(sn=$person*)(givenname=$person*))";
                     $justthese = array("displayName", "displayname", "distinguishedName", "mail", "mobile");
                     $sr = ldap_search($connect, $ou.LDAP_OU_DIRECT, $filter);

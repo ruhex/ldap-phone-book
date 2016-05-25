@@ -1,17 +1,15 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="ru" data-ng-app="PhonesApp" >
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-  <link rel="stylesheet" href="dist/css/bootstrap-submenu.min.css">
-
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" defer></script>
-  <script src="dist/js/bootstrap-submenu.min.js" defer></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.11/angular.min.js"></script>
   
   <script src="pdfmake/build/pdfmake.min.js"></script>
   <script src="pdfmake/build/vfs_fonts.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/controllers.js"></script>
 </head>
 <body>
     
@@ -33,7 +31,7 @@
       <ul class="nav navbar-nav navbar-right">
           <form class="navbar-form navbar-right" role="search">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="поиск по фамилии..." id="get_name">
+                <input type="text" class="form-control" placeholder="поиск по фамилии..." ng-model="query">
             </div>
             <button type="submit" class="btn btn-default" id="sub_name">Поиск</button>
           </form>
@@ -52,14 +50,22 @@
   <table class="table table-striped">
     <thead>
         <tr>
-        <th>ФИО</th>
+        <th>{{PhoneData[1].User}}</th>
         <th>Отдел</th>
         <th>E-mail</th>
         <th>Внутренний номер</th>
         <th>Мобильный</th>
         </tr>
         </thead>
-        <tbody id="users">       
+        <tbody id="users" ng-controller="PhoneListCtrl">
+           
+            <tr ng-repeat="tmp in PhoneData | filter:query">
+               <td><span class='glyphicon glyphicon-user' aria-hidden='true' ></span> {{tmp.DisplayName}}</td>
+                <td><span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span> {{tmp.Dn}}</td>
+                <td><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> {{tmp.Mail}}</td>
+                <td><span class='glyphicon glyphicon-earphone' aria-hidden='true'></span> {{tmp.Phone}}</td>
+               <td><span class='glyphicon glyphicon-phone' aria-hidden='true'></span>{{tmp.Mobile}}</td>
+                </tr>
         
         
 
