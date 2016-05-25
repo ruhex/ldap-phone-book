@@ -6,15 +6,9 @@
 
         class Ldap
         {
-            //public static $massiv;
-
-            static public function LdapConnect($person = "", $ou = null)
-            {
-                
-                
-                if($ou != null)
-                    $ou = "OU=".$ou.",";
-                
+            static public function LdapConnect()
+            {   
+                                
                 $massiv = null;
                 $connect = ldap_connect(LDAP_HOST, LDAP_PORT);
                 ldap_set_option($connect, LDAP_OPT_PROTOCOL_VERSION, 3);
@@ -22,17 +16,12 @@
                 
                 if ($connect)
                 {
-                                       
                     $ldap_bind = ldap_bind($connect, LDAP_USER, LDAP_PASSWD);
-                    $filter = "(|(sn=$person*)(givenname=$person*))";
-                    $justthese = array("displayName", "displayname", "distinguishedName", "mail", "mobile");
-                    $sr = ldap_search($connect, $ou.LDAP_OU_DIRECT, $filter);
-                    $info = ldap_get_entries($connect, $sr);
-
-                    //echo $info["count"]." записей возвращено\n";
-                    
-                    
-                    
+                    // В фильтре убаны параметры поиска т.к поиск через AngularJS  
+                    $filter = "(|(sn=*)(givenname=*))";
+                    //$justthese = array("displayName", "displayname", "distinguishedName", "mail", "mobile");
+                    $ldap_search = ldap_search($connect, LDAP_OU_DIRECT, $filter);
+                    $info = ldap_get_entries($connect, $ldap_search);
                     
                     for ($i=0; $i<$info["count"]; $i++) {
                         if ($info[$i]["telephonenumber"][0] != null or $info[$i]["mobile"][0] != null)
@@ -45,12 +34,7 @@
                                     $info[$i]["telephonenumber"][0],
                                     $info[$i]["mobile"][0]);
                         }
-                       
-                       
                     }
-                    
-                    
-                    
                     return $massiv;
 
                 }
