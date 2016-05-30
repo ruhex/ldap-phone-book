@@ -6,7 +6,7 @@
 
 //
 //            
-//        For old version (no used)
+//        For old version (don't used)
 //        
 //        function UserGetAll() {
 //            $.ajax({
@@ -28,22 +28,22 @@
 //                   $('#users').html(html);
 //               }
 //            });
-//        }
-        
+//        }       
         
         
         
         
         function PDF(list) {
             
-            var arr = [[ 'ФИО', 'Отдел', 'E-mail', 'Внутренний номер', 'Мобильный' ] ];            
+            // Add title columns in PDF document            
+            var massiv = [[ 'ФИО', 'Отдел', 'E-mail', 'Внутренний номер', 'Мобильный' ] ];            
             
             list.forEach(function(tmp){
                 if (tmp.Phone === null) {tmp.Phone = ''}; 
                 if (tmp.Mail === null) {tmp.Mail = ''};
                 if (tmp.Mobile === null) {tmp.Mobile = ''};
                 
-                arr.push([tmp.DisplayName, tmp.Dn, tmp.Mail, tmp.Phone, tmp.Mobile]);
+                massiv.push([tmp.DisplayName, tmp.Dn, tmp.Mail, tmp.Phone, tmp.Mobile]);
             });                        
             
             var docDefinition = {
@@ -52,7 +52,7 @@
                     table: {
                       headerRows: 1,
                       widths: 'auto',
-                      body: arr
+                      body: massiv
                     }
                   }
                 ]
@@ -61,15 +61,7 @@
             pdfMake.createPdf(docDefinition).download('phones');
         }  
         
-        $(document).ready(function(){      
-           
-            //CatGet();
-            //UserGetAll();
-            
-            $('#cat').on('click', 'li a', function(){
-               // alert($(this).text());
-               
-           });
+        $(document).ready(function(){
             
             $(document).on('click', '#pdf_send', function(){
                 PDF(pdf);
