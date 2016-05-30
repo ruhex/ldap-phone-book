@@ -3,82 +3,76 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function CatGet() {
-            $.ajax({
-               type:'GET',
-               url:'core/cat.php',
-               response:'text',
-               success:function (html){
-                   $('#cat').html(html);
-               }
-            });
-        }
-        
-        function UserGetAll() {
-            $.ajax({
-               type:'GET',
-               url:'core/content.php',
-               response:'text',
-               success:function (html){
-                   $('#users').html(html);
-               }
-            });
-        }
-        
-        function UserGet(ou) {
-            $.ajax({
-               type:'GET',
-               url:'core/content.php?ou=' + ou,
-               response:'text',
-               success:function (html){
-                   $('#users').html(html);
-               }
-            });
-        }
+
+//
+//            
+//        For old version (no used)
+//        
+//        function UserGetAll() {
+//            $.ajax({
+//               type:'GET',
+//               url:'core/content.php',
+//               response:'text',
+//               success:function (html){
+//                   $('#users').html(html);
+//               }
+//            });
+//        }
+//        
+//        function UserGet(ou) {
+//            $.ajax({
+//               type:'GET',
+//               url:'core/content.php?ou=' + ou,
+//               response:'text',
+//               success:function (html){
+//                   $('#users').html(html);
+//               }
+//            });
+//        }
         
         
         
         
         
-        function testPDF(content) {
-            var docDefinition = { content: content};
-          pdfMake.createPdf(docDefinition).download();
-        }
+        function PDF(list) {
+            
+            var arr = [[ 'ФИО', 'Отдел', 'E-mail', 'Внутренний номер', 'Мобильный' ] ];            
+            
+            list.forEach(function(tmp){
+                if (tmp.Phone === null) {tmp.Phone = ''}; 
+                if (tmp.Mail === null) {tmp.Mail = ''};
+                if (tmp.Mobile === null) {tmp.Mobile = ''};
+                
+                arr.push([tmp.DisplayName, tmp.Dn, tmp.Mail, tmp.Phone, tmp.Mobile]);
+            });                        
+            
+            var docDefinition = {
+                pageOrientation: 'landscape',
+                content: [ {
+                    table: {
+                      headerRows: 1,
+                      widths: 'auto',
+                      body: arr
+                    }
+                  }
+                ]
+            };
+            
+            pdfMake.createPdf(docDefinition).download('phones');
+        }  
         
-        
-        
-        
-        
-        $(document).ready(function(){            
+        $(document).ready(function(){      
            
-            CatGet();
+            //CatGet();
             //UserGetAll();
             
             $('#cat').on('click', 'li a', function(){
-                //alert($(this).text());
-                    UserGet($(this).text());
-                    
-                
-            });
-            
-             $('#sub_name').click(function(){
-                UserGetName($('#get_name').val()); 
-             });
-         
-            
+               // alert($(this).text());
+               
+           });
             
             $(document).on('click', '#pdf_send', function(){
-                    
-                    testPDF($('#users').text());
-                    
-                
+                PDF(pdf);
             });
-
-            $('#show_all_cat').click(function(){
-                    UserGetAll();
-            });
-
-            
-            
         });
 

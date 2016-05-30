@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="ru" data-ng-app="PhonesApp" >
 <head>
+  <title>Phone Book</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-2.2.3.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" defer></script>
@@ -14,27 +15,29 @@
 <body>
     
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-  <div class="container">
+  <div class="container" >
       
-      <ul class="nav navbar-nav navbar-left">
+      <ul class="nav navbar-nav navbar-left" data-ng-controller="CatListCtrl">
           <li class="navbar-brand" style="color: red; font-size: 24px; padding-left: 0">Phone book <span class="label label-primary">2.2</span></li>
-          <li><a href="#" id="show_all_cat">Все отделы</a></li>
+          <li><a href="#" data-ng-click="Select('')">Все отделы</a></li>
           <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Выбрать отдел</a>
-              <ul class="dropdown-menu" ng-controller="CatListCtrl">
-                  <li ng-repeat="tmp in CatData"><a href="#" ng-click="Alert($event)">{{tmp}}</a></li>
+              <ul class="dropdown-menu"  id="cat">
+                  <li data-ng-repeat="tmp in CatData"><a data-ng-click="Select(tmp)" href="#">{{tmp | chekmark}}</a></li>
             </ul>
           
           </li>
           <li><a href="#" id="pdf_send">Экспорт в PDF</a></li>
-          
       </ul>
       <ul class="nav navbar-nav navbar-right">
-          <form class="navbar-form navbar-right" role="search">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="поиск по фамилии..." ng-model="query">
+         <!-- <form class="navbar-form navbar-right" role="search"> -->
+            <!--<div class="form-group">-->
+            <div class="navbar-form navbar-right" role="search">
+                <input type="text" class="form-control" placeholder="поиск..." ng-model="search">
             </div>
-            <button type="submit" class="btn btn-default" id="sub_name">Поиск</button>
-          </form>
+              
+            <!--<button type="submit" class="btn btn-default" id="sub_name"></button>-->
+            
+          <!--</form>-->
       </ul>
   </div>
 </nav>
@@ -50,28 +53,31 @@
   <table class="table table-striped">
     <thead>
         <tr>
-        <th>{{PhoneData[1].User}}</th>
+        <th>ФИО</th>
         <th>Отдел</th>
         <th>E-mail</th>
         <th>Внутренний номер</th>
         <th>Мобильный</th>
         </tr>
         </thead>
-        <tbody id="users" ng-controller="PhoneListCtrl">
+        <tbody id="users" data-ng-controller="PhoneListCtrl">
         
-            <tr ng-repeat="tmp in PhoneData | filter:query">
+            <tr data-ng-repeat="tmp in PhoneData | filter:search">
                <td><span class='glyphicon glyphicon-user' aria-hidden='true' ></span> {{tmp.DisplayName}}</td>
                 <td><span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span> {{tmp.Dn}}</td>
                 <td><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> {{tmp.Mail}}</td>
                 <td><span class='glyphicon glyphicon-earphone' aria-hidden='true'></span> {{tmp.Phone}}</td>
-               <td><span class='glyphicon glyphicon-phone' aria-hidden='true'></span>{{tmp.Mobile}}</td>
+               <td><span class='glyphicon glyphicon-phone' aria-hidden='true'></span> {{tmp.Mobile}}</td>
                 </tr>
-        
         
 
  </tbody>
   </table>
 </div>
     </div>
+        
+    
+   
+   
 </body>
 </html>
