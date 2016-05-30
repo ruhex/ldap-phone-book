@@ -1,5 +1,5 @@
 <?php
-  include_once '../config.php';
+  include_once 'config.php';
   include_once 'ldap.php';
   error_reporting( E_ERROR );  
   
