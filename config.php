@@ -17,6 +17,6 @@
         define('LDAP_OU_DIRECT', 'OU=users,DC=company,DC=lan');  
         
         // Filter for search (in the current version don't used)
-	define('LDAP_USER_FILTER', '');                                         
+	define('LDAP_USER_FILTER', '');                                      
 
 ?>

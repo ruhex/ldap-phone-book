@@ -36,14 +36,15 @@
         function PDF(list) {
             
             // Add title columns in PDF document            
-            var massiv = [[ 'ФИО', 'Отдел', 'E-mail', 'Внутренний номер', 'Мобильный' ] ];            
+            var massiv = [[ 'ФИО', 'Должность', 'Отдел', 'E-mail', 'Внутренний номер', 'Мобильный' ] ];            
             
             list.forEach(function(tmp){
                 if (tmp.Phone === null) {tmp.Phone = ''}; 
                 if (tmp.Mail === null) {tmp.Mail = ''};
                 if (tmp.Mobile === null) {tmp.Mobile = ''};
+                if (tmp.Title === null) {tmp.Title = ''};
                 
-                massiv.push([tmp.DisplayName, tmp.Dn, tmp.Mail, tmp.Phone, tmp.Mobile]);
+                massiv.push([tmp.DisplayName, tmp.Title, tmp.Dn, tmp.Mail, tmp.Phone, tmp.Mobile]);
             });                        
             
             var docDefinition = {

@@ -55,7 +55,8 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                            <th>ФИО</th>
+                            <th>ФИО</th>                            
+                            <th>Должность</th>
                             <th>Отдел</th>
                             <th>E-mail</th>
                             <th>Внутренний номер</th>
@@ -66,6 +67,7 @@
                         <tbody id="users" data-ng-controller="PhoneListCtrl">        
                             <tr data-ng-repeat="tmp in PhoneData | filter:search">
                                 <td><span class='glyphicon glyphicon-user' aria-hidden='true' ></span> {{tmp.DisplayName}}</td>
+                                <td><span class='glyphicon glyphicon-bookmark' aria-hidden='true'></span> {{tmp.Title}}</td>
                                 <td><span class='glyphicon glyphicon-briefcase' aria-hidden='true'></span> {{tmp.Dn}}</td>
                                 <td><span class='glyphicon glyphicon-envelope' aria-hidden='true'></span> {{tmp.Mail}}</td>
                                 <td><span class='glyphicon glyphicon-earphone' aria-hidden='true'></span> {{tmp.Phone}}</td>

@@ -9,19 +9,20 @@
 		private $Mail;
                 private $Dn;
                 private $Mobile;
-
-
+                private $Title;
                 
-                public function __construct($user, $fio, $dn, $mail = null, $phone = null, $mobile = null)
+                
+                public function __construct($user, $fio, $dn, $title = null, $mail = null, $phone = null, $mobile = null)
                 {
                     $this->User = $user;
                     $this->DisplayName = $fio;
                     $this->Mail = $mail;
                     $this->Phone = $phone;
                     $this->Mobile = $mobile;
+                    $this->Title = $title;
+                    
                     $this->Dn = $this->setDn($dn);
                 }
-
                 
                 public function setDn($dn)
                 {
@@ -43,7 +44,6 @@
 			return $this->User;
 		}
 
-
 		public function setPhone($phone)
 		{
 			$this->Phone = $phone;
@@ -52,8 +52,7 @@
 		public function getPhone()
 		{
 			return $this->Phone;
-		}
-		
+		}		
 
 		public function setMail($mail)
 		{
@@ -83,6 +82,16 @@
                 public function getMobile()
                 {
                     return $this->Mobile;
+                }
+                
+                public function setTitle($title)
+                {
+                    $this->Title = $title;
+                }
+                
+                public function getTitle()
+                {
+                    return $this->Title;
                 }
                 
                 public function getJSONEncode()

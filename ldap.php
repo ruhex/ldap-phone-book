@@ -30,6 +30,7 @@
                                     $info[$i]["samaccountname"][0], 
                                     $info[$i]["displayname"][0],
                                     $info[$i]["distinguishedname"][0],
+                                    $info[$i]["title"][0],
                                     $info[$i]["mail"][0], 
                                     $info[$i]["telephonenumber"][0],
                                     $info[$i]["mobile"][0]);

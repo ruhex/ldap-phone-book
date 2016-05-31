@@ -1,6 +1,2 @@
-#config.php
-test.php
-*.html
-!index.html
-app.js
 /.projectKnowledge
+config.php
